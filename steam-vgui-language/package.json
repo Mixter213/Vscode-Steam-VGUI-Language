@@ -1,0 +1,25 @@
+{
+    "name": "vgui-language",
+    "displayName": "VGUI Language",
+    "description": "Vgui Language support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.58.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "vgui",
+            "aliases": [ "Steam VGUI" , "VGUI" , "vgui" ],
+            "extensions": [ ".layout", ".res", ".styles" ],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "vgui",
+            "scopeName": "source.vgui",
+            "path": "./syntaxes/vgui.tmLanguage.json"
+        }]
+    }
+}
