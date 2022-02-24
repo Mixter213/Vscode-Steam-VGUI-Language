@@ -1,0 +1,329 @@
+{
+
+	"scopeName": "source.vgui",
+	"name": "vgui",
+
+	"patterns": [
+		{"include": "#Comments"},
+		{"include": "#Special-Variable"},
+		{"include": "#Include-Property"},
+		{"include": "#Variabled-KV-Pair"},
+		{"include": "#KV-Pair"},
+		{"include": "#Special-KeyValue"},
+		{"include": "#Render-Property"},
+		{"include": "#Single-KeyValue"},
+		{"include": "#Operating-System"},
+        {"include": "#Brackets"}
+    ],
+
+
+	"repository": {
+
+		"Comments": {
+			"patterns": [
+				{
+					"comment": "single line comment",
+					"match": "//.*",
+					"name": "comment.line.vgui"
+				}
+			]
+		},
+
+		"Operating-System": {
+			"patterns": [
+				{
+					"comment": "Operating-System Selector",
+					"match": "\\[[^\\[\\]\\{\\}]+\\]",
+					"name": "constant.language.os.vgui"
+				}
+			]
+		},
+
+		"Single-KeyValue": {
+			"patterns": [
+				{
+					"comment": "Key-Value ( Quoted )",
+					"match": "(\"[^\"\\{\\}\\[\\]]+\")",
+					"name": "entity.other.attribute-name.class.css"
+				},
+				{
+					"comment": "Key-Value ( UnQuoted )",
+					"match": "([^=\\s\\[\\]\\{\\}]+)\\b",
+					"name": "entity.other.attribute-name.class.css"
+				}
+
+			]
+		},
+
+		"Special-KeyValue": {
+			"patterns": [
+				{
+					"comment": "Special Key-Value ( Quoted )",
+					"match": "(?i)(\"(control|styles|layout|colors|region|place)\")",
+					"name": "entity.other.attribute-name.class.css"
+				},
+				{
+					"comment": "Special Key-Value ( UnQuoted )",
+					"match": "(?i)(control|styles|layout|colors|region|place)\\b",
+					"name": "entity.other.attribute-name.class.css"
+				}
+
+			]
+		},
+
+		"Special-Variable": {
+			"patterns": [
+				{
+					"comment": "Key-Value File Path ( Quoted )",
+					"match": "(\"(\\w+(/\\w+){1,}(\\.\\w+)?)\")",
+					"name": "string.filepath.vgui"
+				},
+				{
+					"comment": "Key-Value File Path ( UnQuoted )",
+					"match": "(\\w+(/\\w+){1,}(\\.\\w+))",
+					"name": "string.filepath.vgui"
+				},
+				{
+					"comment": "Key-Value with space ( Quoted )",
+					"match": "(\"([^\"\\{\\}\\[\\]]+){1,}\")",
+					"name": "string.quoted.vgui"
+				}
+			]
+		},
+
+		"Include-Property": {
+			"patterns": [
+				{
+					"comment": "A key value pair - Include ( Quoted Quoted )",
+					"match": "(\"include\")(?:[=\\s]{0,3})+(\"[^\"\\{\\}\\[\\]]+\")",
+					"captures": {
+						"1": {"name": "keyword.control.include.vgui"},
+						"2": {"name": "string.quoted.double.vgui"}
+					}
+				},
+				{
+					"comment": "A key value pair - Include ( UnQuoted Quoted )",
+					"match": "(include)(?:[=\\s]{1,3})+(\"[^\"\\{\\}\\[\\]]+\")",
+					"captures": {
+						"1": {"name": "keyword.control.include.vgui"},
+						"2": {"name": "string.quoted.double.vgui"}
+					}
+				},
+				{
+					"comment": "A key value pair - Include ( Quoted UnQuoted )",
+					"match": "(\"include\")(?:[=\\s]{1,3})+([^=\\s\\{\\}\\[\\]]+)",
+					"captures": {
+						"1": {"name": "keyword.control.include.vgui"},
+						"2": {"name": "string.quoted.double.vgui"}
+					}
+				},
+				{
+					"comment": "A key value pair - Include ( UnQuoted UnQuoted )",
+					"match": "(include)(?:[=\\s]{1,3})+([^=\\s\\{\\}\\[\\]]+)",
+					"captures": {
+						"1": {"name": "keyword.control.include.vgui"},
+						"2": {"name": "string.quoted.double.vgui"}
+					}
+				}
+			]
+		},
+
+		"Variabled-KV-Pair": {
+			"patterns": [
+				{
+					"comment": "A key value Color pair ( Quoted Quoted )",
+					"match": "(\"[^\"\\{\\}\\[\\]]+\")(?:[=\\s]{0,3})+(\"(?:(?:[+-])?\\d+(?:\\.\\d+)?(?:\\s+)?){1,4}\")",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {"name": "constant.numeric.vgui"}
+					}
+				},
+				{
+					"comment": "A key value Color pair ( UnQuoted Quoted )",
+					"match": "([^=\\s\\{\\}\\[\\]]+)(?:[=\\s]{1,3})+(\"(?:(?:[+-])?\\d+(?:\\.\\d+)?(?:\\s+)?){1,4}\")",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {"name": "constant.numeric.vgui"}
+					}
+				},
+				{
+					"comment": "A key value Color pair ( Quoted UnQuoted )",
+					"match": "(\"[^\"\\{\\}\\[\\]]+\")(?:[=\\s]{1,3})+(?:(?:[+-])?\\d+(?:\\.\\d+)?(?:\\s+)?){1,4}",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {"name": "constant.numeric.vgui"}
+					}
+				},
+				{
+					"comment": "A key value Color pair ( UnQuoted UnQuoted )",
+					"match": "([^=\\s\\{\\}\\[\\]]+)(?:[=\\s]{1,3})+((?:[+-])?\\d+(?:\\.\\d+)?(?:\\s+)?){1,4}",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {"name": "constant.numeric.vgui"}
+					}
+				}
+
+			]
+		},
+
+		"KV-Pair": {
+			"patterns": [
+				{
+					"comment": "A key value pair ( Quoted Quoted )",
+					"match": "(\"[^\"\\{\\}\\[\\]]+\")(?:[=\\s]{0,3})+(\"[^\"\\{\\}\\[\\]]+\")",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {
+							"name": "support.constant.property-value.vgui",
+							"patterns": [
+								{
+									"comment": "Key-Value File Path ( Quoted )",
+									"match": "(\"(\\w+(/\\w+){1,}(\\.\\w+)?)\")",
+									"name": "string.filepath.vgui"
+								},
+								{
+									"comment": "Key-Value File Path ( UnQuoted )",
+									"match": "(\\w+(/\\w+){1,}(\\.\\w+)?)",
+									"name": "string.filepath.vgui"
+								}
+							]
+						}
+					}
+				},
+				{
+					"comment": "A key value pair ( UnQuoted Quoted )",
+					"match": "([^=\\s\\{\\}\\[\\]]+)(?:[=\\s]{1,3})+(\"[^\"\\{\\}\\[\\]]+\")",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {
+							"name": "support.constant.property-value.vgui",
+							"patterns": [
+								{
+									"comment": "Key-Value File Path ( Quoted )",
+									"match": "(\"(\\w+(/\\w+){1,}(\\.\\w+)?)\")",
+									"name": "string.filepath.vgui"
+								},
+								{
+									"comment": "Key-Value File Path ( UnQuoted )",
+									"match": "(\\w+(/\\w+){1,}(\\.\\w+)?)",
+									"name": "string.filepath.vgui"
+								}
+							]
+						}
+					}
+				},
+				{
+					"comment": "A key value pair ( Quoted UnQuoted )",
+					"match": "(\"[^\"\\{\\}\\[\\]]+\")(?:[=\\s]{1,3})+([^=\\s\\{\\}\\[\\]]+)",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {
+							"name": "support.constant.property-value.vgui",
+							"patterns": [
+								{
+									"comment": "Key-Value File Path ( Quoted )",
+									"match": "(\"(\\w+(/\\w+){1,}(\\.\\w+)?)\")",
+									"name": "string.filepath.vgui"
+								},
+								{
+									"comment": "Key-Value File Path ( UnQuoted )",
+									"match": "(\\w+(/\\w+){1,}(\\.\\w+)?)",
+									"name": "string.filepath.vgui"
+								}
+							]
+						}
+					}
+				},
+				{
+					"comment": "A key value pair ( UnQuoted UnQuoted )",
+					"match": "([^=\\s\\{\\}\\[\\]]+)(?:[=\\s]{1,3})+([^=\\s\\{\\}\\[\\]]+)",
+					"captures": {
+						"1": {"name": "support.type.property-name.vgui"},
+						"2": {
+							"name": "support.constant.property-value.vgui",
+							"patterns": [
+								{
+									"comment": "Key-Value File Path ( Quoted )",
+									"match": "(\"(\\w+(/\\w+){1,}(\\.\\w+)?)\")",
+									"name": "string.filepath.vgui"
+								},
+								{
+									"comment": "Key-Value File Path ( UnQuoted )",
+									"match": "(\\w+(/\\w+){1,}(\\.\\w+)?)",
+									"name": "string.filepath.vgui"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+
+		"Render-Property": {
+			"patterns": [
+				{"include": "#Comments"},
+				{
+					"comment": "Render Property",
+					"begin": "(?i)(render(_bg)?)",
+					"beginCaptures": {
+						"1":{
+							"name": "support.type.property-name.vgui"
+						}
+					},
+					"end": "}",
+					"patterns": [
+						{"include": "#Comments"},
+						{
+							"include": "#Operating-System"
+						},
+						{
+							"comment": "A key value pair ( UnQuoted Quoted )",
+							"match": "(\\d+)(?:[=\\s]{1,3})+(\"[^\"\\{\\}\\[\\]]+\")",
+							"captures": {
+								"1": {"name": "support.function.vgui"},
+								"2": {
+									"patterns": [
+										{"include": "#Comments"},
+										{
+											"comment": "key value function",
+											"match": "(?i)(fill|image(_tiled|_scale|_proportional|)|gradient(_horizontal|)|dashedrect)",
+											"name": "keyword.operator.vgui"
+										},
+										{
+											"comment": "key value Constants",
+											"match": "((\\w+)?\\d+)",
+											"name": "constant.numeric.vgui"
+										},
+										{
+											"comment": "Key-Value File Path ( UnQuoted )",
+											"match": "(\\w+(/\\w+){1,})",
+											"name": "string.filepath.vgui"
+										},
+										{
+											"comment": "key value Property Value",
+											"match": "(\\w+)(\\.\\w+)?",
+											"name": "string.constant.property-value.vgui"
+										}
+									]
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+
+		"Brackets": {
+			"patterns": [
+				{
+					"comment": "{",
+					"match": "\\s*{"
+				},
+				{
+					"comment": "}",
+					"match": "\\s*}"
+				}
+			]
+		}
+	}
+}

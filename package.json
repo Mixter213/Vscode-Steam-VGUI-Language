@@ -1,8 +1,8 @@
 {
-    "name": "vgui-language",
-    "displayName": "VGUI Language",
-    "description": "Vgui Language support",
-    "version": "0.0.1",
+    "name": "steam-vgui-language",
+    "displayName": "Steam VGUI Language",
+    "description": "Steam Vgui Language Syntax Highlighting",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.58.0"
     },
@@ -13,7 +13,7 @@
         "languages": [{
             "id": "vgui",
             "aliases": [ "Steam VGUI" , "VGUI" , "vgui" ],
-            "extensions": [ ".layout", ".res", ".styles" ],
+            "extensions": [ ".layout", ".res", ".styles", ".menu" ],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
